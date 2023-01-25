@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row p">
+        <div class="col-md-12">
+            <div class="card card-plain table-plain-bg">
+                <div class="card-header ">
+                    <h4 class="card-title">Table on Plain Background</h4>
+                    <p class="card-category">Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body table-full-width table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr><th>ID</th>
+                            <th>Nome do Contato</th>
+                            <th>Contato</th>
+                            <th>Tipo</th>
+                            <th class="text-center">Ações</th>
+                        </tr></thead>
+                        <tbody>
+                        <tr *ngFor="let contact of contacts | async">
+                            <td>{{contact.id}}</td>
+                            <td>{{contact.contact_name}}</td>
+                            <td>{{contact.contact}}</td>
+                            <td>{{contact.contact_type | titlecase}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-round btn-default" (click)="edit(contact.id)" style="margin-right: 15px;">EDITAR</button>
+                                <button class="btn btn-round btn-warning">EXCLUIR</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

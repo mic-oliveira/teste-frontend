@@ -1,18 +1,18 @@
 
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text">
+        <a [routerLink]="'contacts'" class="simple-text">
             <div class="logo-img">
                 <img src="/assets/img/angular2-logo-white.png"/>
             </div>
-            Creative Tim
+            Teste Brivia
         </a>
     </div>
     <ul class="nav responsive-nav">
-        <li *ngIf="isMobileMenu()">
+        <!--<li *ngIf="isMobileMenu()">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-dashboard"></i>
-				<p class="hidden-lg hidden-md">Dashboard</p>
+				<p class="hidden-lg hidden-md">Contatos</p>
             </a>
         </li>
         <li class="dropdown" *ngIf="isMobileMenu()">
@@ -67,7 +67,7 @@
                 <p>Log out</p>
             </a>
         </li>
-        <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
+        <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>-->
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
             <a  [routerLink]="[menuItem.path]">
                 <i class="{{menuItem.icon}}"></i>

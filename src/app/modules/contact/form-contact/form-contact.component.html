@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row p">
+        <div class="col-md-12">
+            <div class="card card-plain table-plain-bg">
+                <div class="card-header ">
+                    <h3 class="card-title">#Contato: {{contact.contact_name}}</h3>
+                    <p class="card-category">Here is a subtitle for this table</p>
+                </div>
+                <div class="card-body">
+                    <div class="form-group col-12 col-md-5">
+                        <label>Nome</label>
+                        <input id="contact_name" class="form-control" [(ngModel)]="contact.contact_name">
+                    </div>
+                    <div class="form-group col-12 col-md-5">
+                        <label>Nome</label>
+                        <input id="contact" class="form-control" [(ngModel)]="contact.contact">
+                    </div>
+                    <div class="form-group col-12 col-md-5">
+                        <label>Nome</label>
+                        <select class="form-control">
+                            <option *ngFor="let type of contactTypes | async" [value]="type.id">{{type.name|titlecase}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
