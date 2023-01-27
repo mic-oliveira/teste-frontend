@@ -6,8 +6,9 @@ import {FormContactComponent} from "./form-contact/form-contact.component";
 import {ContactTypeService} from "../../services/contact-type.service";
 
 const routes: Routes = [
-  { path: '', component: ListContactComponent },
-  { path: ':id', component: FormContactComponent }
+  { path: '', component: ListContactComponent, data: {title: 'Contatos'},children: [] },
+  { path: ':id', component: FormContactComponent, data: {title: 'Contatos'}},
+  { path: 'create', component: FormContactComponent, data: {title: 'Contatos'}},
 ];
 
 @NgModule({

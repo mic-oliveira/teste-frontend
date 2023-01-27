@@ -22,4 +22,12 @@ export class ContactTypeService implements ServiceInterface{
   get(page: number, search: string): Observable<any> {
     return this.http.get(`${environment.url}/${this.endpoint}`)
   }
+
+  create(data: any): Observable<any> {
+    return undefined;
+  }
+
+  update(data: any, id: string): Observable<any> {
+    return undefined;
+  }
 }

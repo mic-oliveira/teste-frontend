@@ -4,20 +4,28 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import {LoginScreenComponent} from "./shared/login-screen/login-screen.component";
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'contacts',
+    redirectTo: 'login',
     pathMatch: 'full',
-  }, {
+  },
+  {
+    path: 'login',
+    component: LoginScreenComponent
+  },
+  {
     path: '',
     component: AdminLayoutComponent,
     children: [
         {
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(x => x.AdminLayoutModule)
-  }]},
+          path: '',
+          loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(x => x.AdminLayoutModule)
+        }
+      ]
+  },
   {
     path: '**',
     redirectTo: 'dashboard'
@@ -29,7 +37,7 @@ const routes: Routes =[
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes,{
-       useHash: true
+       useHash: false
     })
   ],
   exports: [

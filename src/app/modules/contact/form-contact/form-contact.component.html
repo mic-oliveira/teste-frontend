@@ -1,28 +1,34 @@
 <div class="container-fluid">
     <div class="row p">
         <div class="col-md-12">
-            <div class="card card-plain table-plain-bg">
-                <div class="card-header ">
-                    <h3 class="card-title">#Contato: {{contact.contact_name}}</h3>
-                    <p class="card-category">Here is a subtitle for this table</p>
+            <form #form="ngForm" (ngSubmit)="submit(form)" novalidate>
+                <div class="card card-plain table-plain-bg">
+                    <div class="card-header ">
+                        <h3 class="card-title">#Contato: {{contact.name}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group col-12 col-md-5">
+                            <label>Nome</label>
+                            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="contact.name">
+                        </div>
+                        <div class="form-group col-12 col-md-5">
+                            <label>Contato</label>
+                            <input id="contact" name="contact" class="form-control" [(ngModel)]="contact.contact">
+                        </div>
+                        <div class="form-group col-12 col-md-5">
+                            <label>Tipo de contato</label>
+                            <select name="type_id" class="form-control" [(ngModel)]="contact.type_id">
+                                <option *ngFor="let type of contactTypes | async" [selected]="contact.type_id == type.id" [value]="type.id">{{type.name|titlecase}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-md-12" style="display: flex; justify-content: center;">
+                            <button type="button" [routerLink]="['/contacts']" class="btn btn-fill btn-warning" style="margin-right: 15px;">CANCELAR</button>
+                            <button type="submit" class="btn btn-fill btn-success">SALVAR</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="form-group col-12 col-md-5">
-                        <label>Nome</label>
-                        <input id="contact_name" class="form-control" [(ngModel)]="contact.contact_name">
-                    </div>
-                    <div class="form-group col-12 col-md-5">
-                        <label>Nome</label>
-                        <input id="contact" class="form-control" [(ngModel)]="contact.contact">
-                    </div>
-                    <div class="form-group col-12 col-md-5">
-                        <label>Nome</label>
-                        <select class="form-control">
-                            <option *ngFor="let type of contactTypes | async" [value]="type.id">{{type.name|titlecase}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
+
     </div>
 </div>

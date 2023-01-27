@@ -6,13 +6,21 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    const token = localStorage.getItem('token');
+    const req = request.clone({
+      setHeaders: {
+        ContentType: 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return next.handle(req);
   }
 }
