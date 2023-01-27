@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ServiceInterface} from "../../../interfaces/service-interface";
-import {Observable, of, Subject} from "rxjs";
+import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2'
 @Component({
@@ -9,16 +9,20 @@ import Swal from 'sweetalert2'
   styleUrls: ['./list-contact.component.scss']
 })
 export class ListContactComponent implements OnInit {
+  search = '';
   contacts: Observable<Array<any>>;
-  contactsSubject: Subject<any> = new Subject<any>()
+  contactsSubject: BehaviorSubject<any> = new BehaviorSubject<any>('');
   constructor(@Inject('ServiceInterface') private service: ServiceInterface, private router: Router) { }
 
   ngOnInit(): void {
-    this.loadData();
+    this.contactsSubject.subscribe((string: string) => {
+      this.loadData(string);
+    })
+
   }
 
-  loadData() {
-    this.service.get(1, '').subscribe((req: any) => {
+  loadData(search:string = '') {
+    this.service.get(1, search).subscribe((req: any) => {
       this.contacts = of(req.data);
     });
   }
@@ -43,13 +47,17 @@ export class ListContactComponent implements OnInit {
           this.loadData();
           Swal.fire({
             icon: 'success',
-            titleText: 'Usuario excluído com sucesso.',
+            titleText: 'Contato excluído com sucesso.',
           });
         })
       }
 
     })
 
+  }
+
+  filterContacts() {
+    this.contactsSubject.next(this.search);
   }
 
 }

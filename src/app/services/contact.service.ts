@@ -17,7 +17,7 @@ export class ContactService implements ServiceInterface{
     return this.http.post(`${environment.url}/${this.endpoint}`, data);
   }
   get(page: number = 1, search: string = ''): Observable<any> {
-    const _search = search == '' ? '' : `&filter[contactSearch]=${search}`;
+    const _search = search == '' ? '' : `&filter[contact]=${search}`;
     return this.http.get(`${environment.url}/${this.endpoint}?page=${page}${_search}`);
   }
 
